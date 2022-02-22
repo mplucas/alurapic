@@ -14,19 +14,15 @@ export default {
   data() {
     return {
       titulo: "Alurapic",
-      fotos: [
-        {
-          url:
-            "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/social/monkey_king.jpg",
-          titulo: "dota2-mk"
-        },
-        {
-          url:
-            "https://lucrorpg.com/wp-content/uploads/2021/08/king-louis-II-the-younger-of-italy.webp",
-          titulo: "ck3"
-        }
-      ]
+      fotos: []
     };
+  },
+
+  created() {
+    this.$http
+      .get("http://localhost:3000/v1/fotos")
+      .then(res => res.json())
+      .then(fotos => (this.fotos = fotos));
   }
 };
 </script>
